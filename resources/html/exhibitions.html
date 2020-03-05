@@ -1,0 +1,80 @@
+<div id="exhibitions-list">
+    <p id="exhibitions-list-fichas" class="exhibitions-list-item">
+        SE TENÍA QUE DECIR Y SE DIJO <span>Gente en fichas coleccionables - RAF, San Martin, Buenos Aires (Mayo/Junio
+            2019)</span>
+    </p>
+
+    <p id="exhibitions-list-contextos" class="exhibitions-list-item">
+        CONTEXTOS <span>Hasta que la muerte nos separe, crónica visual de mi relación con la basura - Centro Cultural
+            UNGS, San Miguel, Buenos Aires (Noviembre 2018)</span>
+    </p>
+
+    <p id="exhibitions-list-identidad" class="exhibitions-list-item">
+        IDENTIDAD <span>Construcción del ego - UNGS, Los Polvorines, Buenos Aires (Julio/Agosto 2016)</span>
+    </p>
+</div>
+
+<div id="exhibitions-modal-fichas" class="exhibition-modal row justify-content-center">
+    <button id="exhibitions-carousel-prev"></button>
+    <img id="exhibitions-carousel-img" class="exhibitions-img">
+    <button id="exhibitions-carousel-next"></button>
+</div>
+
+<div id="exhibitions-modal-contextos" class="exhibition-modal row justify-content-center">
+    <img src="resources/img/exhibitions/contextos.png" alt="Contextos" class="exhibitions-img">
+</div>
+
+
+<div id="exhibitions-modal-identidad" class="exhibition-modal row justify-content-center">
+    <img src="resources/img/exhibitions/identidad.jpg" alt="Identidad" class="exhibitions-img">
+</div>
+
+<script>
+    exhibitionsFichasImgsIndex = 0;
+
+    $('#exhibitions-list-fichas').click(() => {
+        $('#exhibitions-modal-fichas').css('visibility', 'visible');
+        $('#exhibitions-modal-fichas').css('opacity', '1');
+        $('#exhibitions-carousel-img').attr("src", exhibitionsFichasImgs[exhibitionsFichasImgsIndex]);
+    });
+    $('#exhibitions-modal-fichas').click(() => {
+        $('#exhibitions-modal-fichas').css('visibility', 'hidden');
+        $('#exhibitions-modal-fichas').css('opacity', '0');
+    });
+    $('#exhibitions-carousel-prev').click((e) => {
+        e.stopPropagation();
+        if (exhibitionsFichasImgsIndex>0){
+            exhibitionsFichasImgsIndex--;
+        } else {
+            exhibitionsFichasImgsIndex = exhibitionsFichasImgs.length-1;
+        }
+        $('#exhibitions-carousel-img').attr("src", exhibitionsFichasImgs[exhibitionsFichasImgsIndex]);
+    });
+    $('#exhibitions-carousel-next').click((e) => {
+        e.stopPropagation();
+        if (exhibitionsFichasImgsIndex<exhibitionsFichasImgs.length-1){
+            exhibitionsFichasImgsIndex++;
+        } else {
+            exhibitionsFichasImgsIndex = 0;
+        }
+        $('#exhibitions-carousel-img').attr("src", exhibitionsFichasImgs[exhibitionsFichasImgsIndex]);
+    });
+
+    $('#exhibitions-list-contextos').click(() => {
+        $('#exhibitions-modal-contextos').css('visibility', 'visible');
+        $('#exhibitions-modal-contextos').css('opacity', '1');
+    });
+    $('#exhibitions-modal-contextos').click(() => {
+        $('#exhibitions-modal-contextos').css('visibility', 'hidden');
+        $('#exhibitions-modal-contextos').css('opacity', '0');
+    });
+
+    $('#exhibitions-list-identidad').click(() => {
+        $('#exhibitions-modal-identidad').css('visibility', 'visible');
+        $('#exhibitions-modal-identidad').css('opacity', '1');
+    });
+    $('#exhibitions-modal-identidad').click(() => {
+        $('#exhibitions-modal-identidad').css('visibility', 'hidden');
+        $('#exhibitions-modal-identidad').css('opacity', '0');
+    });
+</script>

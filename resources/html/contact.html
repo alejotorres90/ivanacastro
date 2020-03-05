@@ -1,0 +1,85 @@
+<div id="form-container" class="align-self-center">
+    <div id="social-media-container" class="row">
+        <p id="social-media-p">SOCIAL MEDIA</p>
+        <a id="social-media-ig" class="social-media-item" target="_blank" href="https://instagram.com/ivitzz"><img
+                id="social-media-ig-img" src="../resources/img/icons/ig-black.png" class="social-media-img"
+                alt="IG"></a>
+        <a id="social-media-fb" class="social-media-item" target="_blank"
+            href="https://facebook.com/IVANA-CASTRO-1827647127519421/"><img id="social-media-fb-img"
+                src="../resources/img/icons/fb-black.png" class="social-media-img" alt="FB"></a>
+    </div>
+    <form>
+        <div id="form-name-container" class="row">
+            <div id="first-name-input-group" class="form-group">
+                <input id="first-name-input" class="form-control" type="text" placeholder="FIRST NAME" autocomplete="off">
+            </div>
+            <div id="last-name-input-group" class="form-group">
+                <input id="last-name-input" class="form-control" type="text" placeholder="LAST NAME" autocomplete="off">
+            </div>
+        </div>
+        <div class="form-group">
+            <input id="email-input" class="form-control" type="text" placeholder="EMAIL ADDRESS" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <input id="subject-input" class="form-control" type="text" placeholder="SUBJECT" autocomplete="off">
+        </div>
+        <div class="form-group">
+            <textarea id="message-input" class="form-control" id="message-input" rows="3"
+                placeholder="MESSAGE"></textarea>
+        </div>
+        <button id="form-submit" type="submit" class="btn btn-primary">SUBMIT</button>
+    </form>
+</div>
+
+<div id="contact-modal" class="row justify-content-center">
+    <div id="contact-message-container">
+        <img id="contact-modal-icon" src="https://i.ya-webdesign.com/images/loading-animated-png-3.gif" alt="loading...">
+        <p>Sending form, please don't close this page</p>
+    </div>
+</div>
+
+<script>
+    $('#form-submit').click(e => {
+
+    e.preventDefault();
+
+    const firstName = document.querySelector('#first-name-input').value;
+    const lastName = document.querySelector('#last-name-input').value;
+    const email = document.querySelector('#email-input').value;
+    const subject = document.querySelector('#subject-input').value;
+    const message = document.querySelector('#message-input').value;
+
+    if (firstName != "" && lastName != "" && email != "" && subject != "" && message != "") {
+        
+        $('#contact-modal').css("visibility", "visible");
+
+        let ivanaWebForm = {};
+
+        ivanaWebForm.name = firstName + " " + lastName;
+        ivanaWebForm.email = email;
+        ivanaWebForm.subject = subject;
+        ivanaWebForm.message = message;
+
+        const jsonData = JSON.stringify(ivanaWebForm);
+
+        let xhr = new XMLHttpRequest();
+        xhr.open('POST', 'https://newsletterservice.com.ar/landing/api/ivanaweb');
+
+        xhr.onreadystatechange = function () {
+            $('#contact-modal').css("visibility", "hidden");
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    alert("Form sent successfully. We will contact you soon.")
+                } else {
+                    alert("Error sending the request, please try again or contact via social media")
+                }
+            }
+        };
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(jsonData);
+
+    } else {
+        alert("Please complete all fields before continuing");
+    }
+});
+</script>
