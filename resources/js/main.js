@@ -1,4 +1,4 @@
-const loadPage = function (page, doPushState) {
+const loadPage = function (page) {
     if (currentPage != page) {
         $('.collapse').collapse('hide');
         fetch("resources/html/" + page + ".html")
@@ -30,14 +30,12 @@ const loadPage = function (page, doPushState) {
             $('#footer-ig-img').attr("src", "resources/img/icons/ig-black.png")
             $('.navbar-toggler-icon').css('background-image', 'url("' + "data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgb(0,0,0)' stroke-width='2' stroke-linecap='square' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E" + '")');
         }
-        if (doPushState) {
-            if (page != 'main') {
-                history.pushState(null, 'Ivana Castro | ' + page.charAt(0).toUpperCase() + name.slice(1), page);
-                $(document).attr("title", 'Ivana Castro | ' + page.charAt(0).toUpperCase() + page.slice(1));
-            } else {
-                history.pushState(null, 'Ivana Castro', '/');
-                $(document).attr("title", 'Ivana Castro');
-            }
+        if (page != 'main') {
+            history.pushState(null, 'Ivana Castro | ' + page.charAt(0).toUpperCase() + name.slice(1), page);
+            $(document).attr("title", 'Ivana Castro | ' + page.charAt(0).toUpperCase() + page.slice(1));
+        } else {
+            history.pushState(null, 'Ivana Castro', '/');
+            $(document).attr("title", 'Ivana Castro');
         }
         currentPage = page;
     }
@@ -68,31 +66,31 @@ $(window).scroll((e) => {
 
 $(window).bind('popstate', () => {
     if (location.pathname.length == 1) {
-        loadPage('main', false);
+        loadPage('main');
     } else {
-        loadPage(location.pathname.substring(1, location.pathname.length), false);
+        loadPage(location.pathname.substring(1, location.pathname.length));
     }
 }
 );
 
 $('.navbar-brand').click(() => {
-    loadPage('main', true);
+    loadPage('main');
 });
 
 $('#navbar-bio').click(() => {
-    loadPage('bio', true);
+    loadPage('bio');
 });
 
 $('#navbar-art').click(() => {
-    loadPage('art', true);
+    loadPage('art');
 });
 
 $('#navbar-exhibitions').click(() => {
-    loadPage('exhibitions', true);
+    loadPage('exhibitions');
 });
 
 $('#navbar-contact, #footer-mail').click(() => {
-    loadPage('contact', true);
+    loadPage('contact');
 });
 
 let lastScrollTop = 0;
@@ -108,19 +106,19 @@ let exhibitionsFichasImgsIndex = 0;
 window.onload = () => {
     switch (localStorage.getItem('pathname')) {
         case '/bio':
-            loadPage('bio', false);
+            loadPage('bio');
             break;
         case '/art':
-            loadPage('art', false);
+            loadPage('art');
             break;
         case '/exhibitions':
-            loadPage('exhibitions', false);
+            loadPage('exhibitions');
             break;
         case '/contact':
-            loadPage('contact', false);
+            loadPage('contact');
             break;
         default:
-            loadPage('main', false);
+            loadPage('main');
             break;
     }
 };
