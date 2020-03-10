@@ -45,7 +45,7 @@ const loadPage = function (page, doPushState) {
 
 $(window).scroll((e) => {
     var scrollTop = $(this).scrollTop();
-    if (scrollTop > lastScrollTop){
+    if (scrollTop > lastScrollTop) {
         $('nav').css('top', '-63px');
         if (scrollTop > 30) {
             if (currentPage == 'art' || currentPage == 'main') {
@@ -67,12 +67,12 @@ $(window).scroll((e) => {
 });
 
 $(window).bind('popstate', () => {
-        if(location.pathname.length == 1) {
-            loadPage('main', false);
-        } else {
-            loadPage(location.pathname.substring(1, location.pathname.length), false);
-        }
+    if (location.pathname.length == 1) {
+        loadPage('main', false);
+    } else {
+        loadPage(location.pathname.substring(1, location.pathname.length), false);
     }
+}
 );
 
 $('.navbar-brand').click(() => {
@@ -100,16 +100,13 @@ let currentPage = '';
 
 //Carousel exhibitions Fichas
 let exhibitionsFichasImgs = [];
-for (let i=0; i<10; i++){
-    exhibitionsFichasImgs.push("resources/img/exhibitions/raf/" + (i+1) + ".jpg");
+for (let i = 0; i < 10; i++) {
+    exhibitionsFichasImgs.push("resources/img/exhibitions/raf/" + (i + 1) + ".jpg");
 }
 let exhibitionsFichasImgsIndex = 0;
 
 window.onload = () => {
-    switch(location.pathname) {
-        case '/':
-            loadPage('main', false);
-            break;
+    switch (localStorage.getItem('pathname')) {
         case '/bio':
             loadPage('bio', false);
             break;
@@ -121,6 +118,9 @@ window.onload = () => {
             break;
         case '/contact':
             loadPage('contact', false);
+            break;
+        default:
+            loadPage('main', false);
             break;
     }
 };
