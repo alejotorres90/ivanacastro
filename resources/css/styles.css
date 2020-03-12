@@ -280,6 +280,7 @@ nav {
     margin-left: 15px;
     border-radius: 100px;
     transition: opacity 0.3s ease-out;
+    opacity: 0.9;
 }
 
 .social-media-img:hover {
