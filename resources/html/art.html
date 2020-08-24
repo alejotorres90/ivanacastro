@@ -9,6 +9,66 @@
             con la basura</p id="art-button-fichas" class="art-button-p">
     </button></div>
 
+<div id="art-modal-fichas" class="art-modal row justify-content-center">
+    <button id="art-carousel-prev"></button>
+    <img id="art-carousel-img" class="art-img">
+    <button id="art-carousel-next"></button>
+</div>
+
+<div id="art-modal-ego" class="art-modal row justify-content-center">
+    <div><p>EN CONSTRUCCION</p></div>
+</div>
+
+<div id="art-modal-basura" class="art-modal row justify-content-center">
+    <div><p>EN CONSTRUCCION</p></div>
+</div>
+
 <script>
-    
+    artFichasImgsIndex = 0;
+
+    $('#art-fichas').click(() => {
+        $('#art-modal-fichas').css('visibility', 'visible');
+        $('#art-modal-fichas').css('opacity', '1');
+        $('#art-carousel-img').attr("src", artFichasImgs[artFichasImgsIndex]);
+    });
+    $('#art-modal-fichas').click(() => {
+        $('#art-modal-fichas').css('visibility', 'hidden');
+        $('#art-modal-fichas').css('opacity', '0');
+    });
+    $('#art-carousel-prev').click((e) => {
+        e.stopPropagation();
+        if (artFichasImgsIndex > 0) {
+            artFichasImgsIndex--;
+        } else {
+            artFichasImgsIndex = artFichasImgs.length - 1;
+        }
+        $('#art-carousel-img').attr("src", artFichasImgs[artFichasImgsIndex]);
+    });
+    $('#art-carousel-next').click((e) => {
+        e.stopPropagation();
+        if (artFichasImgsIndex < artFichasImgs.length - 1) {
+            artFichasImgsIndex++;
+        } else {
+            artFichasImgsIndex = 0;
+        }
+        $('#art-carousel-img').attr("src", artFichasImgs[artFichasImgsIndex]);
+    });
+
+    $('#art-ego').click(() => {
+        $('#art-modal-ego').css('visibility', 'visible');
+        $('#art-modal-ego').css('opacity', '1');
+    });
+    $('#art-modal-ego').click(() => {
+        $('#art-modal-ego').css('visibility', 'hidden');
+        $('#art-modal-ego').css('opacity', '0');
+    });
+
+    $('#art-basura').click(() => {
+        $('#art-modal-basura').css('visibility', 'visible');
+        $('#art-modal-basura').css('opacity', '1');
+    });
+    $('#art-modal-basura').click(() => {
+        $('#art-modal-basura').css('visibility', 'hidden');
+        $('#art-modal-basura').css('opacity', '0');
+    });
 </script>

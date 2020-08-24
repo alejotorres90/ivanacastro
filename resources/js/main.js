@@ -103,6 +103,16 @@ for (let i = 0; i < 10; i++) {
 }
 let exhibitionsFichasImgsIndex = 0;
 
+//Carousel art Fichas
+let artFichasImgs = [];
+for (let i = 0; i < 10; i++) {
+    artFichasImgs.push("resources/img/art/fichas/1." + (i + 1) + ".jpg");
+}
+for (let i = 0; i < 4; i++) {
+    artFichasImgs.push("resources/img/art/fichas/2." + (i + 1) + ".jpg");
+}
+let artFichasImgsIndex = 0;
+
 window.onload = () => {
     switch (localStorage.getItem('pathname')) {
         case '/bio':
